@@ -47,3 +47,8 @@ button:hover {
     background-color: #333;
     color: white;
 }
+
+.controls button.start {
+    background-color: #d7827e;
+    color: white;
+}

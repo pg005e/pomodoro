@@ -4,17 +4,15 @@
     ViewData["Title"] = "Time To Focus";
 }
 
+<audio id="alarmSound" src="aa-with-reverb.mp3" preload="auto"></audio>
+
 <h1>Pomodoro Timer</h1>
 <div id="timer">25:00</div>
 <div class="controls">
     <button id="startBtn">Start</button>
-    <button id="pauseBtn">Pause</button>
-    <button id="resetBtn">Reset</button>
 </div>
 <div class="mode-controls">
-    <button id="pomodoroBtn">Pomodoro (25m)</button>
+    <button id="pomodoroBtn" class="active">Pomodoro (25m)</button>
     <button id="shortBreakBtn">Short Break (5m)</button>
     <button id="longBreakBtn">Long Break (15m)</button>
 </div>
-
-<script src="site.js"></script>

@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #21202e;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #2a283e;
+    padding: 30px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 0;
+    color: #dfdad9;
+}
+
+#timer {
+    font-size: 60px;
+    margin: 30px 0;
+    font-weight: bold;
+    color: #dfdad9;
+}
+
+.controls {
+    margin: 20px 0;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #dfdad9;
+}
+
+button:hover {
+    background-color: #f6c177;
+}
+
+.mode-controls button.active {
+    background-color: #333;
+    color: white;
+}

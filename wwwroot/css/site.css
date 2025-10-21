@@ -48,7 +48,12 @@ button:hover {
     color: white;
 }
 
-.controls button.start {
+.controls button.resume {
     background-color: #d7827e;
-    color: white;
+    color: black;
+}
+
+.controls button.pause {
+    background-color: #ea9d34;
+    color: black;
 }

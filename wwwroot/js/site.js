@@ -22,10 +22,10 @@ function updateDisplay() {
 
 function startTimer() {
   isRunning = true;
-  startBtn.textContent = "Pause";
+  startBtn.textContent = "PAUSE";
 
-  startBtn.classList.remove('pause');
-  startBtn.classList.add('start');
+  startBtn.classList.remove('pause')
+  startBtn.classList.add('resume')
 
   timerInterval = setInterval(() => {
     if (timeLeft > 0) {
@@ -42,9 +42,9 @@ function startTimer() {
 
 function pauseTimer() {
   isRunning = false;
-  startBtn.textContent = "Start";
+  startBtn.textContent = "RESUME";
 
-  startBtn.classList.remove('start')
+  startBtn.classList.remove('resume')
   startBtn.classList.add('pause')
 
   if (timerInterval) {
@@ -68,6 +68,10 @@ function setMode(button, duration) {
 
   document.querySelectorAll('.mode-controls button').forEach(btn => {
     btn.classList.remove('active');
+
+    startBtn.classList.remove('resume');
+    startBtn.classList.remove('pause');
+    startBtn.textContent = 'START'
   })
 
   button.classList.add('active');

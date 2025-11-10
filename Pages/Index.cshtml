@@ -4,7 +4,7 @@
     ViewData["Title"] = "Time To Focus";
 }
 
-<audio id="alarmSound" src="aa-with-reverb.mp3" preload="auto"></audio>
+<audio id="alarmSound" src="./audio/aa-with-reverb.mp3" preload="auto"></audio>
 
 <h1>Pomodoro Timer</h1>
 <div id="timer">25:00</div>
@@ -12,7 +12,24 @@
     <button id="startBtn">START</button>
 </div>
 <div class="mode-controls">
-    <button id="pomodoroBtn" class="active">Pomodoro (25m)</button>
-    <button id="shortBreakBtn">Short Break (5m)</button>
-    <button id="longBreakBtn">Long Break (15m)</button>
+    <button id="pomodoroBtn" class="active">@($"Pomodoro ({Model.PomodoroDuration}m)")</button>
+    <button id="shortBreakBtn">@($"Short Break ({Model.ShortBreakDuration}m)")</button>
+    <button id="longBreakBtn">@($"Long Break ({Model.LongBreakDuration}m)")</button>
+</div>
+
+<!-- could show an icon or something -->
+<div>
+    <button id="settingsModlBtn">settings</button>
+</div>
+<!-- the hidden modal that shows when button is pressed -->
+<div id="settingsModl" class="modl hidden">
+    <div class="modl-content">
+        <label for="pomodoroDuration">Pomodoro</label>
+        <input id="pomodoroDuration" type="number" value="25" />
+        <label for="shortBreakDuration">Short Break</label>
+        <input id="shortBreakDuration" type="number" value="5" />
+        <label for="longBreakDuration">Long Break</label>
+        <input id="longBreakDuration" type="number" value="15" />
+        <button id="settingsSaveBtn">SAVE</button>
+    </div>
 </div>

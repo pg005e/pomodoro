@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace PomodoroApp.Pages;
@@ -12,8 +11,10 @@ public class IndexModel : PageModel
         _logger = logger;
     }
 
-    public void OnGet()
-    {
+    // server response on GET request
+    public void OnGet() { }
 
-    }
+    public int PomodoroDuration = 25;
+    public int ShortBreakDuration = 5;
+    public int LongBreakDuration = 15;
 }

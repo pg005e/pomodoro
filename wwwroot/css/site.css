@@ -57,3 +57,33 @@ button:hover {
     background-color: #ea9d34;
     color: black;
 }
+
+.hidden { display: none }
+
+.modl-content {
+    background-color: #524f67;
+}
+
+.modl-content > * {
+    color: #dfdad9;
+}
+
+#pomodoroDuration {
+    color: #333;
+    margin-top: 3px;
+}
+
+#shortBreakDuration {
+    color: #333;
+    margin-top: 3px;
+}
+
+#longBreakDuration {
+    color: #333;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+#settingsSaveBtn {
+    color: #333;
+}

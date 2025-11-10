@@ -1,9 +1,18 @@
-import { alarmSound, startBtn, pomodoroBtn } from './elements.js';
-import { updateDisplay } from './ui.js';
+import {
+  alarmSound,
+  startBtn,
+  pomodoroBtn,
+  shortBreakBtn,
+  longBreakBtn,
+  pomodoroDuration,
+  shortBreakDuration,
+  longBreakDuration,
+} from './elements.js';
+import { updateTimerDisplay } from './ui.js';
 
-export const POMODORO_TIME = 25 * 60;
-export const SHORT_BREAK_TIME = 5 * 60;
-export const LONG_BREAK_TIME = 15 * 60;
+export let POMODORO_TIME = Number(pomodoroDuration.value) * 60;
+export let SHORT_BREAK_TIME = Number(shortBreakDuration.value) * 60;
+export let LONG_BREAK_TIME = Number(longBreakDuration.value) * 60;
 
 let timeLeft = POMODORO_TIME;
 let timerInterval: number | null;
@@ -18,7 +27,7 @@ export function startTimer() {
   timerInterval = setInterval(() => {
     if (timeLeft > 0) {
       timeLeft--;
-      updateDisplay(timeLeft);
+      updateTimerDisplay(timeLeft);
     } else {
       pauseTimer();
       alarmSound.play();
@@ -45,10 +54,11 @@ export function toggleTimer() {
   else startTimer();
 }
 
+// select the mode (POMODORO, SHORT-BREAK, LONG-BREAK)
 export function setMode(button: HTMLElement, duration: number) {
   pauseTimer();
   timeLeft = duration;
-  updateDisplay(timeLeft);
+  updateTimerDisplay(timeLeft);
 
   document.querySelectorAll('.mode-controls button').forEach(btn => {
     btn.classList.remove('active');
@@ -57,4 +67,16 @@ export function setMode(button: HTMLElement, duration: number) {
   startBtn.classList.remove('resume', 'pause');
   startBtn.textContent = 'START'
   button.classList.add('active');
+}
+
+export function selectDuration() {
+  // update the HTML for durations (display)
+  pomodoroBtn.innerHTML = `Pomodoro (${pomodoroDuration.value}m)`
+  shortBreakBtn.innerHTML = `Short Break (${shortBreakDuration.value}m)`
+  longBreakBtn.innerHTML = `Long Break (${longBreakDuration.value}m)`
+
+  // update the duration for timer countdown
+  POMODORO_TIME = Number(pomodoroDuration.value) * 60;
+  SHORT_BREAK_TIME = Number(shortBreakDuration.value) * 60;
+  LONG_BREAK_TIME = Number(longBreakDuration.value) * 60;
 }

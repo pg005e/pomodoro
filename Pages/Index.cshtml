@@ -12,9 +12,9 @@
     <button id="startBtn">START</button>
 </div>
 <div class="mode-controls">
-    <button id="pomodoroBtn" class="active">@($"Pomodoro ({Model.PomodoroDuration}m)")</button>
-    <button id="shortBreakBtn">@($"Short Break ({Model.ShortBreakDuration}m)")</button>
-    <button id="longBreakBtn">@($"Long Break ({Model.LongBreakDuration}m)")</button>
+    <button id="pomodoroBtn" class="active">Pomodoro (25m)</button>
+    <button id="shortBreakBtn">Short Break (5m)</button>
+    <button id="longBreakBtn">Long Break (15m)</button>
 </div>
 
 <!-- could show an icon or something -->
@@ -32,4 +32,7 @@
         <input id="longBreakDuration" type="number" value="15" />
         <button id="settingsSaveBtn">SAVE</button>
     </div>
+</div>
+<div id="login-partial">
+    <partial name="_LoginPartial" />
 </div>

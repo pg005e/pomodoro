@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:13
+    container_name: pomodoro-db
+    hostname: localhost
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: pomouser
+      POSTGRES_PASSWORD: pomopass
+      POSTGRES_DB: pomodoro
+    restart: unless-stopped
+    volumes:
+      - data:/var/lib/postgresql/data
+volumes:
+  data:

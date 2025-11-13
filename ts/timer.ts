@@ -10,15 +10,30 @@ import {
 } from './elements.js';
 import { updateTimerDisplay } from './ui.js';
 
-export let POMODORO_TIME = Number(pomodoroDuration.value) * 60;
-export let SHORT_BREAK_TIME = Number(shortBreakDuration.value) * 60;
-export let LONG_BREAK_TIME = Number(longBreakDuration.value) * 60;
+export let POMODORO_TIME = Number(pomodoroDuration.value);
+export let SHORT_BREAK_TIME = Number(shortBreakDuration.value);
+export let LONG_BREAK_TIME = Number(longBreakDuration.value);
 
 let timeLeft = POMODORO_TIME;
+let startTime: Date | null;
 let timerInterval: number | null;
 let isRunning = false;
 
+async function logPomodoro(type: string, startTime: Date, endTime: Date) {
+  console.log("timer completed");
+  await fetch('/?handler=LogTimer', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      type: type,
+      startTimeUtc: startTime.toISOString(),
+      endTimeUtc: endTime.toISOString()
+    })
+  });
+}
+
 export function startTimer() {
+  if (!isRunning) startTime = new Date();
   isRunning = true;
   startBtn.textContent = "PAUSE";
   startBtn.classList.remove('pause')
@@ -32,6 +47,23 @@ export function startTimer() {
       pauseTimer();
       alarmSound.play();
       alert("Time is Up!");
+
+      const endTime = new Date();
+      const timerMode = (() => {
+        const activeButton = document.querySelector('.mode-controls .active');
+        switch (activeButton?.id) {
+          case "pomodoroBtn":
+            return "Pomodoro"
+          case "shortBreakBtn":
+            return "ShortBreak"
+          case "longBreakBtn":
+            return "LongBreak"
+          default:
+            return null;
+        }
+      })();
+
+      logPomodoro(timerMode!, startTime!, endTime);
       setMode(pomodoroBtn, POMODORO_TIME);
     }
   }, 1000);
@@ -69,6 +101,7 @@ export function setMode(button: HTMLElement, duration: number) {
   button.classList.add('active');
 }
 
+// configure the duration for each mode
 export function selectDuration() {
   // update the HTML for durations (display)
   pomodoroBtn.innerHTML = `Pomodoro (${pomodoroDuration.value}m)`
@@ -76,7 +109,7 @@ export function selectDuration() {
   longBreakBtn.innerHTML = `Long Break (${longBreakDuration.value}m)`
 
   // update the duration for timer countdown
-  POMODORO_TIME = Number(pomodoroDuration.value) * 60;
-  SHORT_BREAK_TIME = Number(shortBreakDuration.value) * 60;
-  LONG_BREAK_TIME = Number(longBreakDuration.value) * 60;
+  POMODORO_TIME = Number(pomodoroDuration.value);
+  SHORT_BREAK_TIME = Number(shortBreakDuration.value);
+  LONG_BREAK_TIME = Number(longBreakDuration.value);
 }

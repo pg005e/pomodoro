@@ -14,3 +14,13 @@ export const settingsSaveBtn = getElement('settingsSaveBtn');
 export const pomodoroDuration = getElement<HTMLInputElement>('pomodoroDuration');
 export const shortBreakDuration = getElement<HTMLInputElement>('shortBreakDuration');
 export const longBreakDuration = getElement<HTMLInputElement>('longBreakDuration');
+
+export const seeReportBtn = getElement('seeReportBtn');
+export const reportsModal = getElement('reportsModl');
+
+export const dayStreak = getElement('dayStreak');
+export const dayAccessed = getElement('dayAccessed');
+export const frequentTimerDuration = getElement('frequentTimerDuration');
+export const frequentTimerMode = getElement('frequentTimerMode');
+export const totalHoursFocused = getElement('totalHoursFocused');
+

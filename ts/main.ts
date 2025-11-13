@@ -6,6 +6,13 @@ import {
   settingsModalBtn,
   settingsModal,
   settingsSaveBtn,
+  seeReportBtn,
+  dayStreak,
+  dayAccessed,
+  frequentTimerDuration,
+  frequentTimerMode,
+  totalHoursFocused,
+  reportsModal,
 } from './elements.js';
 import {
   POMODORO_TIME,
@@ -15,7 +22,7 @@ import {
   toggleTimer,
   selectDuration,
 } from './timer.js';
-import { toggleModal } from './ui.js';
+import { seeLogReport, toggleModal } from './ui.js';
 
 startBtn.addEventListener('click', toggleTimer);
 pomodoroBtn.addEventListener('click', () => setMode(pomodoroBtn, POMODORO_TIME));
@@ -24,3 +31,13 @@ longBreakBtn.addEventListener('click', () => setMode(longBreakBtn, LONG_BREAK_TI
 
 settingsModalBtn.addEventListener('click', () => toggleModal(settingsModal));
 settingsSaveBtn.addEventListener('click', () => selectDuration());
+
+seeReportBtn.addEventListener('click', () =>
+  seeLogReport(
+    reportsModal,
+    dayStreak,
+    dayAccessed,
+    frequentTimerDuration,
+    frequentTimerMode,
+    totalHoursFocused
+  ));

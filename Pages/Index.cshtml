@@ -20,6 +20,7 @@
 <!-- could show an icon or something -->
 <div>
     <button id="settingsModlBtn">settings</button>
+    <button id="seeReportBtn">see report</button>
 </div>
 <!-- the hidden modal that shows when button is pressed -->
 <div id="settingsModl" class="modl hidden">
@@ -32,6 +33,15 @@
         <input id="longBreakDuration" type="number" value="15" />
         <button id="settingsSaveBtn">SAVE</button>
     </div>
+</div>
+<div id="reportsModl" class="modl hidden">
+  <div class="modl-content">
+      <p id="dayStreak"></p>
+      <p id="dayAccessed"></p>
+      <p id="frequentTimerDuration"></p>
+      <p id="frequentTimerMode"></p>
+      <p id="totalHoursFocused"></p>
+  </div>
 </div>
 <div id="login-partial">
     <partial name="_LoginPartial" />

@@ -1,8 +1,7 @@
 import { timerDisplay } from './elements.js';
 
-// TODO: update the mode duration when selecting custom mode duration
-
-let isModalVisible = false;
+let isSettingsModalVisible = false;
+let isReportsModalVisible = false;
 
 // countdowns the timer, updates the timer as mode selected
 export function updateTimerDisplay(timeLeft: number) {
@@ -13,11 +12,42 @@ export function updateTimerDisplay(timeLeft: number) {
 
 // toggle the hidden settings modal (simple)
 export function toggleModal(modal: HTMLElement) {
-  if (isModalVisible) {
+  if (isSettingsModalVisible) {
     modal.classList.add('hidden');
-    isModalVisible = false;
+    isSettingsModalVisible = false;
   } else {
     modal.classList.remove('hidden');
-    isModalVisible = true;
+    isSettingsModalVisible = true;
+  }
+}
+
+export async function seeLogReport(
+  reportsModal: HTMLElement,
+  dayStreak: HTMLElement,
+  dayAccessed: HTMLElement,
+  frequentTimerDuration: HTMLElement,
+  frequentTimerMode: HTMLElement,
+  totalHoursFocused: HTMLElement
+) {
+  const response = await fetch('/?handler=LogReports', {
+    method: 'GET'
+  });
+  const report = await response.json();
+  if (report.error == "NotLoggedIn") {
+    alert("Please log in to unlock reports!")
+  } else {
+    if (isReportsModalVisible) {
+      reportsModal.classList.add('hidden');
+      isReportsModalVisible = false;
+    } else {
+      reportsModal.classList.remove('hidden');
+      isReportsModalVisible = true;
+    }
+
+    dayStreak.innerHTML = `Day Streak = ${report.dayStreak}`;
+    dayAccessed.innerHTML = `Day Accessed = ${report.dayAccessed}`;
+    frequentTimerDuration.innerHTML = `Frequent Timer Duration = ${report.frequentTimerDuration}`;
+    frequentTimerMode.innerHTML = `Frequent Timer Mode = ${report.frequentTimerMode}`;
+    totalHoursFocused.innerHTML = `Total Hours Focused = ${report.totalHoursFocused}`;
   }
 }

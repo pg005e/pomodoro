@@ -20,7 +20,6 @@ let timerInterval: number | null;
 let isRunning = false;
 
 async function logPomodoro(type: string, startTime: Date, endTime: Date) {
-  console.log("timer completed");
   await fetch('/?handler=LogTimer', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
